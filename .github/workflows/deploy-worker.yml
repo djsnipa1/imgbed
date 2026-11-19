@@ -35,9 +35,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    # 仅在 fork 仓库且配置了 Cloudflare secrets 时运行
-    # 原仓库 push 和未配置 secrets 的 fork 不会触发部署
-    if: ${{ github.event.repository.fork }}
+    # Job 始终启动；若未配置 CLOUDFLARE_API_TOKEN，下面的检查步骤会跳过实际部署
     steps:
       - name: Check deployment config
         id: check
